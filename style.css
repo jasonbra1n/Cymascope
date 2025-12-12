@@ -139,6 +139,10 @@ main {
   border-top: 1px solid var(--overlay-border-color);
 }
 
+.controls-hidden {
+  display: none !important;
+}
+
 button,
 label {
   color: var(--text-color);

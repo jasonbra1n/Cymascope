@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on Keep a Changelog,
 and this project adheres to Semantic Versioning.
 
+## [0.1.1] - 2025-12-13
+
+### Fixed
+- **Fullscreen Controls**: Fixed a bug where the controls overlay would not reappear after exiting fullscreen mode on certain browsers (e.g., Brave, Safari) due to inconsistent browser API implementations.
+
 ## [0.1.0] - 2025-12-12
 
 ### Added

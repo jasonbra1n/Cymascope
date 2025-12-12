@@ -312,6 +312,11 @@ const CymascopeApp = {
     document.getElementById('tuner-toggle-checkbox').addEventListener('change', (e) => this.toggleTuner(e.target.checked));
     document.getElementById('test-button').addEventListener('click', () => this.toggleTestMode());
     document.getElementById('theme-toggle-button').addEventListener('click', () => this.toggleTheme());
+
+    document.addEventListener('fullscreenchange', () => this.onFullscreenChange());
+    document.addEventListener('webkitfullscreenchange', () => this.onFullscreenChange());
+    document.addEventListener('mozfullscreenchange', () => this.onFullscreenChange());
+    document.addEventListener('MSFullscreenChange', () => this.onFullscreenChange());
   },
 
   resizeCanvas() {
@@ -321,6 +326,12 @@ const CymascopeApp = {
     if (this.gl) {
       this.gl.viewport(0, 0, canvas.width, canvas.height);
     }
+  },
+
+  onFullscreenChange() {
+    const controls = document.getElementById('controls');
+    const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+    controls.classList.toggle('controls-hidden', !!isFullscreen);
   },
 
   initTheme() {
@@ -398,8 +409,8 @@ const CymascopeApp = {
   },
 
   toggleFullscreen() {
-    const canvasContainer = document.getElementById('canvas-container');
     if (!document.fullscreenElement) {
+      const canvasContainer = document.getElementById('canvas-container');
       canvasContainer.requestFullscreen().catch(console.error);
     } else {
       document.exitFullscreen();

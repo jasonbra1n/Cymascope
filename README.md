@@ -1,9 +1,10 @@
 # Cymascope
 
+[**[► Live Demo]**](https://jasonbra1n.github.io/Cymascope/)
+
 A real-time, browser-based audio visualizer inspired by the principles of cymatics. This project uses the Web Audio API to capture microphone input and WebGL to render beautiful, intricate patterns that correspond to the frequencies in the sound.
 
-<!-- It's recommended to replace this with a local screenshot, e.g., ![Cymascope Screenshot](assets/screenshot.png) -->
-<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiThqa7DD48TlvvaTthPwkoWhVJQcapT9DgP4lh7zu2xoHFriMVHuL9HF-IWWPFzax8bqRjkdgQH3u4t3nrtUVIc_Hs7L6CiZ8HJJ3232ua1tGbFyM1rTJBQJ1wvpWxKt8H5EQ4rhuEjAv16qh4dYlLbDG7Z5u7HQ0UEa0iDmbaF3gwKnm61rm5nBXbcFH6/s1600/A-visually-striking-digital-artwork-of-a-circular-cymascope-in-action.-The-centerpiece-is-a-glowing-vibrant-circular-membrane-pulsating-with-intricat.webp" alt="Cymascope Visualization" width="600">
+![Cymascope Screenshot](assets/screenshot.png)
 
 ## 🚀 Features
 
@@ -19,6 +20,17 @@ A real-time, browser-based audio visualizer inspired by the principles of cymati
 - **Test Mode**: A built-in sine wave generator to test the visualization without a microphone.
 - **Modern UI**: A clean, single-page layout with overlay controls and theme support.
   - **Light & Dark Themes**: Switch themes manually or sync with system preference.
+
+## Usage
+
+1.  Visit the [Live Demo](https://jasonbra1n.github.io/Cymascope/).
+2.  Click the **"Start Audio"** button.
+3.  Grant the browser permission to access your microphone.
+4.  Make some noise! The visualization will react in real-time.
+
+### Browser Compatibility
+
+This application requires a modern browser with support for the **Web Audio API** and **WebGL**. It is tested and works best on recent versions of Chrome, Firefox, Edge, and Brave.
 
 ## 🛠️ How It Works
 
