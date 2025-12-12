@@ -38,10 +38,15 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* Use fixed height to prevent scrolling */
+  height: 100vh;
   overflow: hidden; /* Hide any potential overflow */
+
+  /* Use CSS Grid for a robust main layout */
+  display: grid;
+  grid-template-rows: auto 1fr; /* Header gets its natural height, main content takes the rest */
+  grid-template-areas:
+    "header"
+    "main";
 }
 
 .main-header {
@@ -50,6 +55,7 @@ body {
   border-bottom: 1px solid var(--border-color);
   width: 100%;
   box-sizing: border-box;
+  grid-area: header; /* Assign to the 'header' grid area */
 }
 
 .main-header {
@@ -75,16 +81,19 @@ body {
 
 main {
   width: 100%;
-  flex-grow: 1; /* Allow main to fill remaining vertical space */
   padding: 0;
   box-sizing: border-box;
   display: flex; /* Use flexbox to manage child size */
+  position: relative; /* Establish a positioning context for the controls */
+  grid-area: main; /* Assign to the 'main' grid area */
+  overflow: hidden; /* Prevent any internal overflow */
 }
 
 /* Container to hold the canvas when not in fullscreen */
 #canvas-container {
   width: 100%;
   position: relative;
+  flex-grow: 1; /* Ensure it fills the space in the main flex container */
 }
 
 #tuner-overlay {
@@ -123,20 +132,22 @@ main {
 /* Controls styling */
 #controls {
   position: absolute;
-  bottom: 0;
+  bottom: 10px; /* Give it a little space from the edge */
   left: 0;
   right: 0;
+  margin: 0 auto; /* Center it horizontally */
+  width: fit-content; /* Make the width only as large as its content */
   background: var(--overlay-background); /* Semi-transparent background */
   backdrop-filter: blur(5px); /* Frosted glass effect */
   -webkit-backdrop-filter: blur(5px);
   padding: 15px;
-  border-radius: 8px;
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
   align-items: center;
   justify-content: center;
   border-top: 1px solid var(--overlay-border-color);
+  border-radius: 8px;
 }
 
 .controls-hidden {

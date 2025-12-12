@@ -5,10 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on Keep a Changelog,
 and this project adheres to Semantic Versioning.
 
-## [0.1.1] - 2025-12-13
+## [0.1.1] - 2025-12-12
 
 ### Fixed
-- **Fullscreen Controls**: Fixed a bug where the controls overlay would not reappear after exiting fullscreen mode on certain browsers (e.g., Brave, Safari) due to inconsistent browser API implementations.
+- **Fullscreen Mode**: Resolved a persistent bug where the controls overlay would fail to reappear after exiting fullscreen mode on certain browsers. The fix involved refactoring the main layout to use CSS Grid and improving fullscreen event handling.
 
 ## [0.1.0] - 2025-12-12
 
@@ -26,6 +26,7 @@ and this project adheres to Semantic Versioning.
 
 ### Fixed
 - **Test Tone**: Restored the audible sine wave tone when activating "TEST VISUALIZATION" mode.
+- **Fullscreen Controls**: Fixed a bug where the controls overlay would not reappear after exiting fullscreen mode on certain browsers (e.g., Brave, Safari) due to inconsistent browser API implementations.
 
 ### Added
 - Initial project structure created from original Blogger script.

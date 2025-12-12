@@ -78,6 +78,7 @@ const CymascopeApp = {
     this.initWebGL();
     this.bindUIEvents();
     window.addEventListener('resize', () => this.resizeCanvas());
+    this.bindFullscreenEvents();
     requestAnimationFrame(() => this.render());
   },
 
@@ -312,11 +313,15 @@ const CymascopeApp = {
     document.getElementById('tuner-toggle-checkbox').addEventListener('change', (e) => this.toggleTuner(e.target.checked));
     document.getElementById('test-button').addEventListener('click', () => this.toggleTestMode());
     document.getElementById('theme-toggle-button').addEventListener('click', () => this.toggleTheme());
+  },
 
-    document.addEventListener('fullscreenchange', () => this.onFullscreenChange());
-    document.addEventListener('webkitfullscreenchange', () => this.onFullscreenChange());
-    document.addEventListener('mozfullscreenchange', () => this.onFullscreenChange());
-    document.addEventListener('MSFullscreenChange', () => this.onFullscreenChange());
+  bindFullscreenEvents() {
+    const canvasContainer = document.getElementById('canvas-container');
+    // Attach listeners to the element that will be fullscreen, not the document.
+    canvasContainer.addEventListener('fullscreenchange', () => this.onFullscreenChange());
+    canvasContainer.addEventListener('webkitfullscreenchange', () => this.onFullscreenChange());
+    canvasContainer.addEventListener('mozfullscreenchange', () => this.onFullscreenChange());
+    canvasContainer.addEventListener('MSFullscreenChange', () => this.onFullscreenChange());
   },
 
   resizeCanvas() {
@@ -332,6 +337,10 @@ const CymascopeApp = {
     const controls = document.getElementById('controls');
     const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
     controls.classList.toggle('controls-hidden', !!isFullscreen);
+    // After exiting fullscreen, the container might not have the right size yet.
+    // A small delay ensures the layout has settled before we resize the canvas.
+    // This also triggers a redraw, which helps fix rendering glitches.
+    setTimeout(() => this.resizeCanvas(), 50);
   },
 
   initTheme() {
@@ -409,8 +418,9 @@ const CymascopeApp = {
   },
 
   toggleFullscreen() {
-    if (!document.fullscreenElement) {
-      const canvasContainer = document.getElementById('canvas-container');
+    const canvasContainer = document.getElementById('canvas-container');
+    const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+    if (!isFullscreen) {
       canvasContainer.requestFullscreen().catch(console.error);
     } else {
       document.exitFullscreen();
